@@ -3,12 +3,17 @@ const Schema = mongoose.Schema;
 
 const PostSchema = new Schema ({
     text: {
-        type: String,
+        type: Array,
         required: true
     },
     date: {
+        type: String,
+        required: true
+    },
+
+    createdAt: {
         type: Date,
-        default: Date.now
+        default: Date
     }
 });
 

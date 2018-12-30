@@ -1,13 +1,14 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var MONGODB_URI = require("./config/keys");
+var MONGODB_URI = require("./config/db");
+var APIKEY = require("./config/keys");
 var postController = require("./controllers/postController")
 
 var PORT = process.env.PORT || 5000;
 
 mongoose.connect(
-    MONGODB_URI || "mongodb://localhost/mern_starter",
+    MONGODB_URI || "mongodb://localhost/blogApi",
     { useNewUrlParser: true }
 );
 
@@ -15,13 +16,14 @@ var app = express();
 
 app.use(bodyParser.json({ useNewUrlParser: true }));
 
-app.route('/')
+app.route('/'+ APIKEY)
     .get(postController.findAll)
+    .post(postController.create);
 
-app.route('/:id')
+app.route('/:id/' + APIKEY)
     .get(postController.findById)
     .put(postController.update)
-    .delete(postController.delete)
+    .delete(postController.remove);
 
 
 
