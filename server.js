@@ -6,7 +6,7 @@ var MONGODB_URI = require("./config/db");
 var postController = require("./controllers/postController")
 
 var PORT = process.env.PORT || 5000;
-var KEY = process.env.API_KEY || API_KEY
+// var KEY = process.env.API_KEY || API_KEY
 
 mongoose.connect(
     process.env.PROD_MONGODB || MONGODB_URI,
@@ -17,11 +17,11 @@ var app = express();
 
 app.use(bodyParser.json({ useNewUrlParser: true }));
 
-app.route('/' + KEY)
+app.route('/')
     .get(postController.findAll)
     .post(postController.create);
 
-app.route('/:id/' + KEY)
+app.route('/:id/')
     .get(postController.findById)
     .put(postController.update)
     .delete(postController.remove);
