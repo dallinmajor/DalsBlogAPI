@@ -1,15 +1,15 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var API_KEY = require('./config/keys')
-var MONGODB_URI = require("./config/db");
+// var API_KEY = require('./config/keys')
+// var MONGODB_URI = require("./config/db");
 var postController = require("./controllers/postController")
 
 var PORT = process.env.PORT || 5000;
 // var KEY = process.env.API_KEY || API_KEY
 
 mongoose.connect(
-    process.env.PROD_MONGODB || MONGODB_URI,
+    process.env.PROD_MONGODB,
     { useNewUrlParser: true }
 );
 
