@@ -8,7 +8,7 @@ var postController = require("./controllers/postController")
 var PORT = process.env.PORT || 5000;
 
 mongoose.connect(
-    MONGODB_URI || "mongodb://localhost/blogApi",
+    process.env.PROD_MONGODB || "mongodb://localhost/blogApi",
     { useNewUrlParser: true }
 );
 
@@ -16,11 +16,11 @@ var app = express();
 
 app.use(bodyParser.json({ useNewUrlParser: true }));
 
-app.route('/'+ APIKEY)
+app.route('/')
     .get(postController.findAll)
     .post(postController.create);
 
-app.route('/:id/' + APIKEY)
+app.route('/:id/')
     .get(postController.findById)
     .put(postController.update)
     .delete(postController.remove);
