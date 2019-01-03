@@ -17,8 +17,10 @@ var app = express();
 
 app.use(bodyParser.json({ useNewUrlParser: true }));
 
-app.route('/' + KEY)
+app.route('/')
     .get(postController.findAll)
+
+app.route('/' + KEY)
     .post(postController.create);
 
 app.route('/:id/' + KEY)
